@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mocha Coffee POS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="container">
+    
+    <!-- LANDING PAGE - Main Entry Point -->
+    <div id="landing-page" class="landing-page">
+      <div class="landing-container">
+        <!-- Professional Logo -->
+        <div class="landing-logo">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- Radial gradient for 3D effect -->
+              <radialGradient id="cupGradient" cx="35%" cy="35%">
+                <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+                <stop offset="40%" style="stop-color:#D2B48C;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#8B7355;stop-opacity:1" />
+              </radialGradient>
+              
+              <!-- Coffee inside -->
+              <linearGradient id="coffeeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#5C4033;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#2C1810;stop-opacity:1" />
+              </linearGradient>
+              
+              <!-- Steam gradient -->
+              <linearGradient id="steamGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#E8E8E8;stop-opacity:0.8" />
+                <stop offset="100%" style="stop-color:#B0B0B0;stop-opacity:0" />
+              </linearGradient>
+              
+              <!-- Shadows and highlights -->
+              <filter id="softShadow">
+                <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.4"/>
+              </filter>
+              <filter id="innerShadow">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+              </filter>
+            </defs>
+            
+            <!-- Base shadow -->
+            <ellipse cx="100" cy="165" rx="55" ry="8" fill="#000" opacity="0.15"/>
+            
+            <!-- Cup body with 3D effect -->
+            <g filter="url(#softShadow)">
+              <!-- Left side darker -->
+              <path d="M 48 80 L 45 155 Q 45 170 60 172 L 140 172 Q 155 170 158 155 L 155 80 Z" 
+                    fill="url(#cupGradient)" stroke="#6B5344" stroke-width="2"/>
+              
+              <!-- Right highlight -->
+              <path d="M 155 80 L 152 155 Q 152 165 140 167" 
+                    fill="none" stroke="#F5F5DC" stroke-width="3" opacity="0.6" stroke-linecap="round"/>
+            </g>
+            
+            <!-- Coffee liquid inside -->
+            <path d="M 52 115 L 50 155 Q 50 168 62 170 L 138 170 Q 150 168 152 155 L 150 115 Z" 
+                  fill="url(#coffeeGradient)" filter="url(#softShadow)"/>
+            
+            <!-- Coffee surface shine -->
+            <ellipse cx="101" cy="115" rx="45" ry="8" fill="#4A3728" opacity="0.7"/>
+            <ellipse cx="101" cy="114" rx="40" ry="6" fill="#6B5040" opacity="0.4"/>
+            
+            <!-- Cup rim/top -->
+            <ellipse cx="101.5" cy="79" rx="53.5" ry="12" fill="#C9A26E" stroke="#8B7355" stroke-width="2"/>
+            <ellipse cx="101.5" cy="77" rx="50" ry="10" fill="#E8D4B8" opacity="0.8"/>
+            
+            <!-- Cup handle - thick and prominent -->
+            <g filter="url(#softShadow)">
+              <path d="M 158 95 Q 195 95 198 125 Q 196 155 158 155" 
+                    fill="none" stroke="#D2B48C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 158 98 Q 190 98 193 125 Q 191 152 158 152" 
+                    fill="none" stroke="#F5DEB3" stroke-width="2.5" opacity="0.6" stroke-linecap="round"/>
+            </g>
+            
+            <!-- Professional steam wisps -->
+            <g opacity="0.9">
+              <!-- Left steam -->
+              <path d="M 70 75 Q 65 50 72 20 Q 75 35 70 50 Q 68 60 70 75" 
+                    fill="url(#steamGradient)" filter="url(#softShadow)"/>
+              <path d="M 70 75 Q 65 50 72 20" 
+                    fill="none" stroke="#E0E0E0" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+              
+              <!-- Center steam -->
+              <path d="M 102 70 Q 100 40 108 8 Q 110 30 105 55 Q 103 63 102 70" 
+                    fill="url(#steamGradient)" filter="url(#softShadow)"/>
+              <path d="M 102 70 Q 100 40 108 8" 
+                    fill="none" stroke="#E0E0E0" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+              
+              <!-- Right steam -->
+              <path d="M 135 75 Q 140 50 133 18 Q 130 35 135 52 Q 137 62 135 75" 
+                    fill="url(#steamGradient)" filter="url(#softShadow)"/>
+              <path d="M 135 75 Q 140 50 133 18" 
+                    fill="none" stroke="#E0E0E0" stroke-width="3" opacity="0.4" stroke-linecap="round"/>
+            </g>
+            
+            <!-- Brand ring decoration -->
+            <circle cx="100" cy="100" r="98" fill="none" stroke="#C4934D" stroke-width="1.5" opacity="0.4" stroke-dasharray="5,3"/>
+          </svg>
+        </div>
+        
+        <!-- Brand Name -->
+        <div class="landing-brand">
+          <h1>MOCHA COFFEE</h1>
+          <p>Premium Coffee Experience</p>
+        </div>
+        
+        <!-- Three Main Options -->
+        <div class="landing-options">
+          
+          <!-- Option 1: Order -->
+          <div class="landing-card" id="btn-order">
+            <div class="card-icon">☕</div>
+            <div class="card-title">ORDER</div>
+            <div class="card-description">Take customer orders and manage sales</div>
+            <div class="card-action">START ORDERING →</div>
+          </div>
+          
+          <!-- Option 2: Admin -->
+          <div class="landing-card" id="btn-admin">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">ADMIN</div>
+            <div class="card-description">Manage menu items and prices</div>
+            <div class="card-action">ADMIN PANEL →</div>
+          </div>
+          
+          <!-- Option 3: Summary -->
+          <div class="landing-card" id="btn-summary">
+            <div class="card-icon">📊</div>
+            <div class="card-title">SUMMARY</div>
+            <div class="card-description">View sales analytics and reports</div>
+            <div class="card-action">VIEW ANALYTICS →</div>
+          </div>
+          
+        </div>
+        
+        <div class="landing-footer">
+          <p>Select an option to begin</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER PAGE - POS Interface -->
+    <div id="order-page" class="order-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div class="shop-name">Mocha Coffee POS</div>
+          <button class="btn-back-to-landing" id="back-from-order" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="menu" id="menu">
+          <div class="menu-header">
+            <div class="menu-title">Today's Menu</div>
+            <div class="menu-tools">
+              <input id="menu-search" placeholder="Search drinks..." />
+              <div id="category-tabs" class="category-tabs"></div>
+            </div>
+          </div>
+          <div id="menu-grid" class="menu-grid"></div>
+        </section>
+
+        <section class="cart-section" id="cart-section">
+          <div class="cart-header">
+            <div>🛒 Current Order</div>
+            <button id="cart-clear-btn" class="btn-clear-cart">Clear</button>
+          </div>
+          <div id="cart-items" class="cart-items"></div>
+          <div class="cart-footer">
+            <div class="subtotal-line">
+              <span>Subtotal:</span>
+              <span id="subtotal">Rs 0</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Floating Checkout Bar -->
+      <div id="floating-checkout" class="floating-checkout hidden">
+        <div class="checkout-info">
+          <span id="floating-total-amount" class="total-amount">Rs 0</span>
+          <button id="complete-order" class="btn-checkout">CHECKOUT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN PAGE -->
+    <div id="admin-page" class="admin-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div><strong>ADMIN PANEL - Menu Management</strong></div>
+          <button class="btn-back-to-landing" id="back-from-admin" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <div class="admin-container">
+          <div class="admin-left">
+            <h3>📝 Menu Items</h3>
+            <div id="drinks-list" class="drinks-list"></div>
+            
+            <div class="add-drink-form">
+              <h4>+ Add New Drink</h4>
+              <input type="text" id="new-drink-name" placeholder="Drink name" />
+              <input type="number" id="new-drink-price" placeholder="Price (Rs)" />
+              <select id="new-drink-category">
+                <option value="">Select Category</option>
+                <option value="Hot">Hot</option>
+                <option value="Special">Special</option>
+                <option value="Cold">Cold</option>
+                <option value="Smoothie">Smoothie</option>
+                <option value="Chiller">Chiller</option>
+              </select>
+              <button id="add-drink-btn" class="btn-add">+ ADD DRINK</button>
+            </div>
+          </div>
+
+          <div class="admin-right">
+            <h3>📊 Today's Summary</h3>
+            <div id="analytics" class="analytics-box"></div>
+            
+            <div class="admin-actions">
+              <button id="generate-report-btn" class="btn-report">📈 Monthly Report</button>
+              <button id="summary-view-btn" class="btn-summary">📊 Monthly Summary</button>
+              <button id="export-month" class="btn-export">📥 Export CSV</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- SUMMARY PAGE -->
+    <div id="summary-page" class="summary-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div><strong>SALES ANALYTICS & REPORTS</strong></div>
+          <button class="btn-back-to-landing" id="back-from-summary" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="summary-main">
+        <div class="summary-container">
+          
+          <!-- Quick Stats -->
+          <div class="quick-stats" id="quick-stats"></div>
+          
+          <!-- Monthly Summary Section -->
+          <div class="summary-section">
+            <h3>📊 Monthly Performance</h3>
+            <button id="show-monthly-summary-btn" class="btn-view-summary">View Monthly Summary</button>
+          </div>
+          
+          <!-- Detailed Report Section -->
+          <div class="summary-section">
+            <h3>📈 Detailed Analytics</h3>
+            <button id="show-monthly-report-btn" class="btn-view-report">View Full Report</button>
+          </div>
+          
+          <!-- Export Section -->
+          <div class="summary-section">
+            <h3>📥 Data Export</h3>
+            <button id="export-csv-btn" class="btn-export-csv">Export Monthly Data to CSV</button>
+          </div>
+          
+        </div>
+      </main>
+    </div>
+
+    <!-- PIN Modal -->
+    <div id="pin-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Enter Admin PIN</h3>
+        <input id="pin-input" type="password" placeholder="PIN" maxlength="6" />
+        <div class="modal-buttons">
+          <button id="pin-ok" class="btn-ok">OK</button>
+          <button id="pin-cancel" class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>

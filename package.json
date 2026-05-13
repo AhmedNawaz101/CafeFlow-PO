@@ -1,0 +1,18 @@
+{
+  "name": "mocha-coffee-pos",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "python -m http.server 8000"
+  },
+  "devDependencies": {
+    "@capacitor/android": "^5.7.8",
+    "@capacitor/cli": "^5.7.8",
+    "@capacitor/core": "^5.7.8"
+  },
+  "dependencies": {
+    "@capacitor/filesystem": "^5.2.2",
+    "@capacitor/share": "^5.0.8",
+    "cordova-plugin-bluetooth-serial": "^0.4.7"
+  }
+}

@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mocha Coffee POS</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div id="app" class="container">
+
+    <!-- LANDING PAGE - Main Entry Point -->
+    <div id="landing-page" class="landing-page">
+      <div class="landing-container">
+        <!-- Professional Logo -->
+        <div class="landing-logo">
+          <img src="logo.png" alt="Mocha Coffee Logo" style="width: 200px; height: 200px; object-fit: contain;">
+        </div>
+
+        <!-- Brand Name -->
+        <div class="landing-brand">
+          <h1>MOCHA COFFEE</h1>
+          <p>Premium Coffee Experience</p>
+        </div>
+
+        <!-- Three Main Options -->
+        <div class="landing-options">
+
+          <!-- Option 1: Order -->
+          <div class="landing-card" id="btn-order">
+            <div class="card-icon">☕</div>
+            <div class="card-title">ORDER</div>
+            <div class="card-description">Take customer orders and manage sales</div>
+            <div class="card-action">START ORDERING →</div>
+          </div>
+
+          <!-- Option 2: Admin -->
+          <div class="landing-card" id="btn-admin">
+            <div class="card-icon">⚙️</div>
+            <div class="card-title">ADMIN</div>
+            <div class="card-description">Manage menu items and prices</div>
+            <div class="card-action">ADMIN PANEL →</div>
+          </div>
+
+          <!-- Option 3: Summary -->
+          <div class="landing-card" id="btn-summary">
+            <div class="card-icon">📊</div>
+            <div class="card-title">SUMMARY</div>
+            <div class="card-description">View sales analytics and reports</div>
+            <div class="card-action">VIEW ANALYTICS →</div>
+          </div>
+
+        </div>
+
+        <div class="landing-footer">
+          <p>Select an option to begin</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER PAGE - POS Interface -->
+    <div id="order-page" class="order-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div class="shop-name">Mocha Coffee POS</div>
+          <button class="btn-back-to-landing" id="btn-admin-pos" title="Open Admin Panel"
+            style="margin-right: 10px; background: rgba(212, 175, 55, 0.2); border: 1px solid #D4AF37; color: #D4AF37;">⚙️
+            ADMIN</button>
+          <button class="btn-back-to-landing" id="back-from-order" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="menu" id="menu">
+          <div class="menu-header">
+            <div class="menu-title">Today's Menu</div>
+            <div class="menu-tools">
+              <input id="menu-search" placeholder="Search drinks..." />
+              <div id="category-tabs" class="category-tabs"></div>
+            </div>
+          </div>
+          <div id="menu-grid" class="menu-grid"></div>
+        </section>
+
+        <section class="cart-section" id="cart-section">
+          <div class="cart-header">
+            <div>🛒 Current Order</div>
+            <button id="cart-clear-btn" class="btn-clear-cart">Clear</button>
+          </div>
+          <div id="cart-items" class="cart-items"></div>
+          <div class="cart-footer">
+            <div class="subtotal-line">
+              <span>Subtotal:</span>
+              <span id="subtotal">Rs 0</span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- Floating Checkout Bar -->
+      <div id="floating-checkout" class="floating-checkout hidden">
+        <div class="checkout-info">
+          <span id="floating-total-amount" class="total-amount">Rs 0</span>
+          <button id="complete-order" class="btn-checkout">CHECKOUT</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADMIN PAGE -->
+    <div id="admin-page" class="admin-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div><strong>ADMIN PANEL - Menu Management</strong></div>
+          <button class="btn-back-to-landing" id="back-from-admin" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="admin-main">
+        <div class="admin-container">
+          <div class="admin-left">
+            <h3>📝 Menu Items</h3>
+            <div id="drinks-list" class="drinks-list"></div>
+
+            <div class="add-drink-form">
+              <h4>+ Add New Drink</h4>
+              <input type="text" id="new-drink-name" placeholder="Drink name" />
+              <input type="number" id="new-drink-price" placeholder="Price (Rs)" />
+              <select id="new-drink-category">
+                <option value="">Select Category</option>
+                <option value="Hot">Hot</option>
+                <option value="Special">Special</option>
+                <option value="Cold">Cold</option>
+                <option value="Smoothie">Smoothie</option>
+                <option value="Chiller">Chiller</option>
+              </select>
+              <button id="add-drink-btn" class="btn-add">+ ADD DRINK</button>
+            </div>
+          </div>
+
+          <div class="admin-right">
+            <h3>📊 Today's Summary</h3>
+            <div id="analytics" class="analytics-box"></div>
+
+            <div class="admin-actions">
+              <button id="generate-report-btn" class="btn-report">📈 Monthly Report</button>
+              <button id="summary-view-btn" class="btn-summary">📊 Monthly Summary</button>
+              <button id="export-month" class="btn-export">📥 Export CSV</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- SUMMARY PAGE -->
+    <div id="summary-page" class="summary-page hidden">
+      <header class="topbar">
+        <div class="logo-area">
+          <div><strong>SALES ANALYTICS & REPORTS</strong></div>
+          <button class="btn-back-to-landing" id="back-from-summary" title="Back to main menu">← BACK</button>
+        </div>
+      </header>
+
+      <main class="summary-main">
+        <div class="summary-container">
+
+          <!-- Quick Stats -->
+          <div class="quick-stats" id="quick-stats"></div>
+
+          <!-- Monthly Summary Section -->
+          <div class="summary-section">
+            <h3>📊 Monthly Performance</h3>
+            <button id="show-monthly-summary-btn" class="btn-view-summary">View Monthly Summary</button>
+          </div>
+
+          <!-- Detailed Report Section -->
+          <div class="summary-section">
+            <h3>📈 Detailed Analytics</h3>
+            <button id="show-monthly-report-btn" class="btn-view-report">View Full Report</button>
+          </div>
+
+          <!-- Export Section -->
+          <div class="summary-section">
+            <h3>📥 Data Export</h3>
+            <button id="export-csv-btn" class="btn-export-csv">Export Monthly Data to CSV</button>
+          </div>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- PIN Modal -->
+    <div id="pin-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Enter Admin PIN</h3>
+        <input id="pin-input" type="password" placeholder="PIN" maxlength="6" />
+        <div class="modal-buttons">
+          <button id="pin-ok" class="btn-ok">OK</button>
+          <button id="pin-cancel" class="btn-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="js/app.js"></script>

@@ -1,0 +1,9 @@
+{
+  "appId": "com.mocha.coffee.pos",
+  "appName": "Mocha Coffee POS",
+  "bundledWebRuntime": false,
+  "webDir": "www",
+  "server": {
+    "cleartext": true
+  }
+}
